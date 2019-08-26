@@ -1,25 +1,28 @@
 package me.alexksysx.model;
 
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+@Proxy(lazy = false)
 public class Character {
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String race;
+    private String test;
 
-    private Character() {}
+    public Character() {}
 
-    public Character(Long id, String name, String race) {
+    public Character(Long id, String name, String race, String test) {
         this.id = id;
         this.name = name;
         this.race = race;
-    }
-
-    @Override
-    public String toString() {
-        return "Character{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", race='" + race + '\'' +
-                '}';
+        this.test = test;
     }
 
     public Long getId() {
@@ -44,5 +47,13 @@ public class Character {
 
     public void setRace(String race) {
         this.race = race;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
     }
 }
