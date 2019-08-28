@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -15,9 +16,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -31,7 +29,7 @@ public class ApplicationConfiguration {
     private String username;
     private String password;
 
-    ApplicationConfiguration() {
+   /* ApplicationConfiguration() {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = rootPath + "application.properties";
         Properties appProps = new Properties();
@@ -45,16 +43,26 @@ public class ApplicationConfiguration {
         driverClass = appProps.getProperty("datasource.driver");
         username = appProps.getProperty("datasource.username");
         password = appProps.getProperty("datasource.password");
-    }
+    }*/
 
     @Bean
-    public DataSource dataSource() throws IOException {
-        DriverManagerDataSource driver = new DriverManagerDataSource();
+    public DataSource dataSource() {
+        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
+        lookup.setResourceRef(true);
+        DataSource dataSource;
+        try {
+            dataSource = lookup.getDataSource("dndServer");
+        } catch (DataSourceLookupFailureException e) {
+            System.out.println("Cannot establish database connection");
+            throw e;
+        }
+        return dataSource;
+        /*DriverManagerDataSource driver = new DriverManagerDataSource();
         driver.setDriverClassName(driverClass);
         driver.setUrl(url);
         driver.setUsername(username);
         driver.setPassword(password);
-        return driver;
+        return driver;*/
     }
 
     @Bean
@@ -66,11 +74,9 @@ public class ApplicationConfiguration {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan(getClass().getPackage().getName());
-        try {
-            factory.setDataSource(dataSource());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        factory.setDataSource(dataSource());
+
 
         return factory;
     }
