@@ -24,10 +24,10 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "me.alexksysx")
 public class ApplicationConfiguration {
 
-    private String url;
+    /*private String url;
     private String driverClass;
     private String username;
-    private String password;
+    private String password;*/
 
    /* ApplicationConfiguration() {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
@@ -45,7 +45,7 @@ public class ApplicationConfiguration {
         password = appProps.getProperty("datasource.password");
     }*/
 
-    @Bean
+    @Bean(destroyMethod = "")
     public DataSource dataSource() {
         JndiDataSourceLookup lookup = new JndiDataSourceLookup();
         lookup.setResourceRef(true);
