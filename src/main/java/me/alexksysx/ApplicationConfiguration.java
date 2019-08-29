@@ -1,6 +1,5 @@
 package me.alexksysx;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,27 +23,6 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "me.alexksysx")
 public class ApplicationConfiguration {
 
-    /*private String url;
-    private String driverClass;
-    private String username;
-    private String password;*/
-
-   /* ApplicationConfiguration() {
-        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String appConfigPath = rootPath + "application.properties";
-        Properties appProps = new Properties();
-        try {
-            appProps.load(new FileInputStream(appConfigPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        url = appProps.getProperty("datasource.url");
-        driverClass = appProps.getProperty("datasource.driver");
-        username = appProps.getProperty("datasource.username");
-        password = appProps.getProperty("datasource.password");
-    }*/
-
     @Bean(destroyMethod = "")
     public DataSource dataSource() {
         JndiDataSourceLookup lookup = new JndiDataSourceLookup();
@@ -57,12 +35,6 @@ public class ApplicationConfiguration {
             throw e;
         }
         return dataSource;
-        /*DriverManagerDataSource driver = new DriverManagerDataSource();
-        driver.setDriverClassName(driverClass);
-        driver.setUrl(url);
-        driver.setUsername(username);
-        driver.setPassword(password);
-        return driver;*/
     }
 
     @Bean
@@ -70,14 +42,10 @@ public class ApplicationConfiguration {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.POSTGRESQL);
         vendorAdapter.setGenerateDdl(true);
-
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan(getClass().getPackage().getName());
-
         factory.setDataSource(dataSource());
-
-
         return factory;
     }
 
@@ -85,7 +53,6 @@ public class ApplicationConfiguration {
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory().getObject());
-
         return txManager;
     }
 }

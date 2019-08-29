@@ -17,7 +17,7 @@ import java.util.Map;
 @Proxy(lazy = false)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Class {
+public class CommonClass {
     @Id
     @GeneratedValue
     @Getter @Setter
@@ -33,16 +33,6 @@ public class Class {
     @Getter @Setter private boolean spellCasting;
     @Getter @Setter private boolean knowAllSpells;
 
-    @Getter @Setter private int[] cantrip = new int[20];
-    @Getter @Setter private int[] level1 = new int[20];
-    @Getter @Setter private int[] level2 = new int[20];
-    @Getter @Setter private int[] level3 = new int[20];
-    @Getter @Setter private int[] level4 = new int[20];
-    @Getter @Setter private int[] level5 = new int[20];
-    @Getter @Setter private int[] level6 = new int[20];
-    @Getter @Setter private int[] level7 = new int[20];
-    @Getter @Setter private int[] level8 = new int[20];
-    @Getter @Setter private int[] level9 = new int[20];
 
     @Getter @Setter private ArrayList<Long> abilities = new ArrayList<>();
 }
