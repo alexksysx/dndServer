@@ -8,7 +8,7 @@ import me.alexksysx.model.CommonClass;
 
 import javax.persistence.DiscriminatorValue;
 
-@DiscriminatorValue(value = "TYPE1")
+@DiscriminatorValue(value = "SpellCaster")
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpellCaster extends CommonClass {
