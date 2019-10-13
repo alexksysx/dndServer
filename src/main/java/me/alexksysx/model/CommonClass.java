@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Entity
 @Proxy(lazy = false)
+@Table(name = "GAMECLASS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(columnDefinition = "TYPE", name = "TYPE")
 @AllArgsConstructor
