@@ -7,8 +7,9 @@ import lombok.Setter;
 import me.alexksysx.model.CommonClass;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
-@DiscriminatorValue(value = "SpellCaster")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class SpellCaster extends CommonClass {

@@ -14,8 +14,7 @@ import java.util.Map;
 @Entity
 @Proxy(lazy = false)
 @Table(name = "commonclass")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(columnDefinition = "TYPE", name = "TYPE")
+@Inheritance
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommonClass {
