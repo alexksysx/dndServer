@@ -33,5 +33,5 @@ public class CommonClass {
     @Getter @Setter private boolean knowAllSpells;
 
 
-    @Getter @Setter private ArrayList<Long> abilities = new ArrayList<>();
+//    @Getter @Setter private ArrayList<Long> abilities = new ArrayList<>();
 }

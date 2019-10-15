@@ -23,6 +23,13 @@ public class GameClassController {
         commonClass.setName("Test");
         commonClass.setId(1L);
         commonClass.setSource("Test");
+        commonClass.setDescription("TEST");
+        commonClass.setHitDice(3);
+        commonClass.setKnowAllSpells(false);
+        commonClass.setMainCharacteristic("TEST");
+        commonClass.setSecondCharacteristic("TEST");
+        commonClass.setSavingThrow1("TEST");
+        commonClass.setSavingThrow2("TEST");
         commonClassRepository.save(commonClass);
         return commonClass;
     }
