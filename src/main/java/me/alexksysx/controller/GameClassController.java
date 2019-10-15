@@ -15,16 +15,11 @@ import java.util.List;
 @RequestMapping("/class")
 public class GameClassController {
 
-    final
+    @Autowired
     CommonClassRepository commonClassRepository;
 
-    final
+    @Autowired
     SpellCasterRepository spellCasterRepository;
-
-    public GameClassController(CommonClassRepository commonClassRepository, SpellCasterRepository spellCasterRepository) {
-        this.commonClassRepository = commonClassRepository;
-        this.spellCasterRepository = spellCasterRepository;
-    }
 
     @GetMapping(produces = "application/json")
     public List<CommonClass> getAll() {
