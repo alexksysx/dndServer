@@ -17,8 +17,12 @@ public class GameClassController {
     @Autowired
     SpellCasterRepository spellCasterRepository;
 
-    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public CommonClass create(@RequestBody CommonClass commonClass) {
+    @PostMapping(value = "/create",/* consumes = "application/json",*/ produces = "application/json")
+    public CommonClass create(/*@RequestBody CommonClass commonClass*/) {
+        CommonClass commonClass = new CommonClass();
+        commonClass.setName("Test");
+        commonClass.setId(1L);
+        commonClass.setSource("Test");
         commonClassRepository.save(commonClass);
         return commonClass;
     }
