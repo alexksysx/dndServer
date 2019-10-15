@@ -29,7 +29,7 @@ public class ApplicationConfiguration {
         lookup.setResourceRef(true);
         DataSource dataSource;
         try {
-            dataSource = lookup.getDataSource("dndServerTest");
+            dataSource = lookup.getDataSource("dndServer");
         } catch (DataSourceLookupFailureException e) {
             System.out.println("Cannot establish database connection");
             throw e;
