@@ -2,7 +2,6 @@ package me.alexksysx.controller;
 
 import me.alexksysx.model.CommonClass;
 import me.alexksysx.model.gameClasses.SpellCaster;
-import me.alexksysx.repo.CommonClassDAO;
 import me.alexksysx.repo.CommonClassRepository;
 import me.alexksysx.repo.SpellCasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +15,20 @@ import java.util.List;
 @RequestMapping("/class")
 public class GameClassController {
 
-    @Autowired
+    final
     CommonClassRepository commonClassRepository;
 
-    @Autowired
+    final
     SpellCasterRepository spellCasterRepository;
+
+    public GameClassController(CommonClassRepository commonClassRepository, SpellCasterRepository spellCasterRepository) {
+        this.commonClassRepository = commonClassRepository;
+        this.spellCasterRepository = spellCasterRepository;
+    }
 
     @GetMapping(produces = "application/json")
     public List<CommonClass> getAll() {
-        List<CommonClass> list = new ArrayList<>();
-        list.addAll(spellCasterRepository.findAll());
-        list.addAll(commonClassRepository.findAll());
-        return list;
+        return new ArrayList<>(commonClassRepository.findAll());
     }
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
