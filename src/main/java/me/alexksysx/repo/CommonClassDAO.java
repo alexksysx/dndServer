@@ -10,6 +10,6 @@ import java.util.List;
 @NoRepositoryBean
 public interface CommonClassDAO<EntityType extends CommonClass> extends JpaRepository<EntityType, Long> {
 
-    @Query("select e from #{#entityName} e")
-    List<EntityType> findTheAll();
+//    @Query("select e from #{#entityName} e")
+//    List<EntityType> findTheAll();
 }
