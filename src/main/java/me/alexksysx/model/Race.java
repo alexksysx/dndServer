@@ -1,32 +1,46 @@
 package me.alexksysx.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Race {
+    @Id
+    @GeneratedValue
+    @Getter @Setter
     private Long id;
-    private String name;
-    private String description;
+    @Getter @Setter public String name;
+    @Getter @Setter private String description;
 
-    private int normalSpeed;
-    private int swimSpeed;
-    private int climbSpeed;
-    private int flySpeed;
-    private int darkVision;
+    @Getter @Setter private int normalSpeed;
+    @Getter @Setter private int swimSpeed;
+    @Getter @Setter private int climbSpeed;
+    @Getter @Setter private int flySpeed;
+    @Getter @Setter private int darkVision;
 
-    private int baseAC;
+    @Getter @Setter private int baseAC;
 
-    private int strengthBonus;
-    private int dexterityBonus;
-    private int constitutionBonus;
-    private int intelligenceBonus;
-    private int wisdomBonus;
-    private int charismaBonus;
+    @Getter @Setter private int strengthBonus;
+    @Getter @Setter private int dexterityBonus;
+    @Getter @Setter private int constitutionBonus;
+    @Getter @Setter private int intelligenceBonus;
+    @Getter @Setter private int wisdomBonus;
+    @Getter @Setter private int charismaBonus;
 
-    private ArrayList<String> resists;
-    private ArrayList<String> languages;
-    private ArrayList<String> skills;
-    private ArrayList<Spell> spells;
-    private ArrayList<String> features;
-    private ArrayList<String> weaponProficiencies;
-    private ArrayList<String> armorProficiencies;
+    @Getter @Setter private ArrayList<String> resists;
+    @Getter @Setter private ArrayList<String> languages;
+    @Getter @Setter private ArrayList<String> skills;
+    @Getter @Setter private ArrayList<String> spells;
+    @Getter @Setter private ArrayList<String> features;
+    @Getter @Setter private ArrayList<String> weaponProficiencies;
+    @Getter @Setter private ArrayList<String> armorProficiencies;
 }
