@@ -17,7 +17,7 @@ public class Character {
     @GeneratedValue
     private Long id;
     @Getter @Setter private String name;
-    @OneToOne(targetEntity = Race.class, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false, updatable = false)
-    @Getter @Setter private Race race;
+//    @OneToOne(targetEntity = Race.class, fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "id", nullable = false, updatable = false)
+    @Getter @Setter private String race;
 }
