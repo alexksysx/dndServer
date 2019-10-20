@@ -18,7 +18,7 @@ public class Race {
     @GeneratedValue
     @Getter @Setter
     private Long id;
-    @Getter @Setter public String name;
+    @Getter @Setter private String name;
     @Getter @Setter private String description;
 
     @Getter @Setter private int normalSpeed;

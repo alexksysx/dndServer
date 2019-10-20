@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Proxy(lazy = false)
@@ -19,5 +17,7 @@ public class Character {
     @GeneratedValue
     private Long id;
     @Getter @Setter private String name;
-    @Getter @Setter private String race;
+    @OneToOne(targetEntity = Race.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @Getter @Setter private Race race;
 }
