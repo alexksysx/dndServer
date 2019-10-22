@@ -15,7 +15,7 @@ public class Character {
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToOne(targetEntity = Race.class, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(targetEntity = Race.class, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id", nullable = false, updatable = false)
     private Race race;
 }
