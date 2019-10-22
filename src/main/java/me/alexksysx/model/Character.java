@@ -16,6 +16,6 @@ public class Character {
     private Long id;
     private String name;
     @OneToOne(targetEntity = Race.class, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id", nullable = false, updatable = false)
+    @JoinColumn(name = "race_id", nullable = false, updatable = false)
     private Race race;
 }

@@ -17,7 +17,7 @@ public class Race {
     @Id
     @GeneratedValue
     @Getter @Setter
-    @OneToOne(mappedBy = "race")
+    @Column(name = "race_id")
     private Long id;
     @Getter @Setter private String name;
     @Getter @Setter private String description;
