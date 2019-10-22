@@ -15,7 +15,7 @@ public class Race {
     @Id
     @GeneratedValue
     @Getter @Setter
-//    @OneToOne(mappedBy = "race", optional = false)
+    @OneToMany(mappedBy = "race", fetch = FetchType.LAZY)
     private Long id;
     @Getter @Setter private String name;
     @Getter @Setter private String description;
