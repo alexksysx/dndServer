@@ -1,8 +1,6 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.Intermedmodel.InterCharacter;
 import me.alexksysx.model.Character;
-import me.alexksysx.model.Race;
 import me.alexksysx.repo.CharacterRepository;
 import me.alexksysx.repo.RaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +20,7 @@ public class CharacterController {
     RaceRepository raceRepository;
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public Character create(@RequestBody InterCharacter interCharacter) {
-        Character character = new Character();
-        character.setName(interCharacter.getName());
-        Race race = raceRepository.findAllById(interCharacter.getRace());
-        character.setRace(race);
+    public Character create(@RequestBody Character character) {
         characterRepository.save(character);
         return character;
     }
