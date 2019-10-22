@@ -25,7 +25,7 @@ public class RaceController {
         return raceRepository.findAll();
     }
 
-    @GetMapping(produces = "aplication/json", value = "/{id}")
+    @GetMapping(produces = "application/json", value = "/{id}")
     public Race getOneRace(@PathVariable Long id) {
         return raceRepository.getOne(id);
     }
