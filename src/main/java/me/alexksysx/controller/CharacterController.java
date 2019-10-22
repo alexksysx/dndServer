@@ -1,5 +1,6 @@
 package me.alexksysx.controller;
 
+import me.alexksysx.Intermedmodel.InterCharacter;
 import me.alexksysx.model.Character;
 import me.alexksysx.repo.CharacterRepository;
 import me.alexksysx.repo.RaceRepository;
@@ -20,7 +21,10 @@ public class CharacterController {
     RaceRepository raceRepository;
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public Character create(@RequestBody Character character) {
+    public Character create(@RequestBody InterCharacter interCharacter) {
+        Character character = new Character();
+        character.setName(interCharacter.getName());
+        character.setRace(raceRepository.getOne(interCharacter.getRace()));
         characterRepository.save(character);
         return character;
     }
