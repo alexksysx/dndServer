@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class Race {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter
     @Column(name = "race_id")
 

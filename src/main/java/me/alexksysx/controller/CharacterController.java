@@ -1,10 +1,11 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.Intermedmodel.InterCharacter;
+import me.alexksysx.dto.CharacterDto;
 import me.alexksysx.model.Character;
 import me.alexksysx.repo.CharacterRepository;
 import me.alexksysx.repo.RaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +21,12 @@ public class CharacterController {
     @Autowired
     RaceRepository raceRepository;
 
+    @Transactional
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public Character create(@RequestBody Character character, Long raceId) {
-//        Character character = new Character();
-//        character.setName(interCharacter.getName());
-//        character.setRace(raceRepository.getOne(interCharacter.getRace()));
-        character.setRace(raceRepository.getOne(raceId));
+    public Character create(@RequestBody CharacterDto characterDto) {
+        Character character = new Character();
+        character.setName(characterDto.getName());
+        character.setRace(raceRepository.getOne(characterDto.getRaceId()));
         characterRepository.save(character);
         return character;
     }

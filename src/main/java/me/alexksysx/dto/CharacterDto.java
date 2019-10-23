@@ -1,4 +1,4 @@
-package me.alexksysx.Intermedmodel;
+package me.alexksysx.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InterCharacter {
+public class CharacterDto {
     private String name;
-    private Long race;
+    private Long raceId;
 }
