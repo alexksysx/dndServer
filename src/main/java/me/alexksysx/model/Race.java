@@ -18,6 +18,7 @@ public class Race {
     @GeneratedValue
     @Getter @Setter
     @Column(name = "race_id")
+
     private Long id;
     @Getter @Setter private String name;
     @Getter @Setter private String description;

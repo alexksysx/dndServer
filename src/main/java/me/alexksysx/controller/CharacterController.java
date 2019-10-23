@@ -21,10 +21,11 @@ public class CharacterController {
     RaceRepository raceRepository;
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public Character create(@RequestBody Character character) {
+    public Character create(@RequestBody Character character, Long raceId) {
 //        Character character = new Character();
 //        character.setName(interCharacter.getName());
 //        character.setRace(raceRepository.getOne(interCharacter.getRace()));
+        character.setRace(raceRepository.getOne(raceId));
         characterRepository.save(character);
         return character;
     }
