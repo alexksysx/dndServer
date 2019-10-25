@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gs-rest-service" />
         <module name="react" />
+        <module name="dndServerTest" />
         <module name="dndServer" />
       </profile>
     </annotationProcessing>

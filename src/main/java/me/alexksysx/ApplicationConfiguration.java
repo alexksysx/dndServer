@@ -26,20 +26,15 @@ public class ApplicationConfiguration {
 
     @Bean(destroyMethod = "")
     public DataSource dataSource() {
-//        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
-//        lookup.setResourceRef(true);
-//        DataSource dataSource;
-//        try {
-//            dataSource = lookup.getDataSource("dndServer");
-//        } catch (DataSourceLookupFailureException e) {
-//            System.out.println("Cannot establish database connection");
-//            throw e;
-//        }
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://alexksysx.me:5432/dndServer");
-        dataSource.setUsername("alexksysx");
-        dataSource.setPassword("password");
+        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
+        lookup.setResourceRef(true);
+        DataSource dataSource;
+        try {
+            dataSource = lookup.getDataSource("dndServer");
+        } catch (DataSourceLookupFailureException e) {
+            System.out.println("Cannot establish database connection");
+            throw e;
+        }
         return dataSource;
     }
 
