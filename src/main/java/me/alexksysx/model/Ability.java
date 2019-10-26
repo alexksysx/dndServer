@@ -1,7 +1,9 @@
 package me.alexksysx.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Entity;
@@ -9,14 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Proxy(lazy = false)
 public class Ability {
     @Id
     @GeneratedValue
-    @Getter @Setter
     private Long id;
-    @Getter @Setter private String name;
-    @Getter @Setter private String description;
-    @Getter @Setter private String restoration;
-    @Getter @Setter private int counter;
+    private String name;
+    private String description;
+    private String restoration;
+    private int counter;
 }

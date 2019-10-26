@@ -1,6 +1,6 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.item.Item;
+import me.alexksysx.model.Item;
 import me.alexksysx.repo.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,7 +1,8 @@
 package me.alexksysx.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Entity;
@@ -9,13 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Proxy(lazy = false)
 public class Spell {
     @Id
     @GeneratedValue
-    @Getter @Setter
     private Long id;
-    @Getter @Setter private int level;
-    @Getter @Setter private String type;
-    @Getter @Setter private String description;
+    private int level;
+    private String type;
+    private String description;
 }

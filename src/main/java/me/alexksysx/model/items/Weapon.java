@@ -1,19 +1,20 @@
-package me.alexksysx.model.gameClasses;
+package me.alexksysx.model.items;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import me.alexksysx.model.CommonClass;
+import me.alexksysx.model.Item;
 
 import javax.persistence.Entity;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
 @AllArgsConstructor
-public class SpellCaster extends CommonClass {
-//    int[][] spellCells = new int[10][20];
-    String inhTest;
+@NoArgsConstructor
+public class Weapon extends Item {
+    private String damage;
+    private String damageType;
+    private String weaponType;
 }

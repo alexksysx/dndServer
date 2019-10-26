@@ -1,12 +1,10 @@
 package me.alexksysx.repo;
 
-import me.alexksysx.model.item.Weapon;
-import org.springframework.data.jpa.repository.JpaRepository;
+import me.alexksysx.model.items.Weapon;
+import me.alexksysx.repo.dao.ItemDao;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-
 @Repository
-public interface WeaponRepository extends JpaRepository<Weapon, Long> {
-    public ArrayList<Weapon> findBySource(String source);
+public interface WeaponRepository extends ItemDao<Weapon> {
+
 }
