@@ -1,4 +1,4 @@
-package me.alexksysx.model;
+package me.alexksysx.model.gameClasses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.Item;
+import me.alexksysx.model.items.Item;
 import me.alexksysx.model.items.Armor;
 import me.alexksysx.model.items.Weapon;
 import me.alexksysx.repo.ArmorRepository;

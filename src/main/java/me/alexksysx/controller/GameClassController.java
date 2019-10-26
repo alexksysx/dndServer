@@ -1,6 +1,6 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.CommonClass;
+import me.alexksysx.model.gameClasses.CommonClass;
 import me.alexksysx.model.gameClasses.SpellCaster;
 import me.alexksysx.repo.CommonClassRepository;
 import me.alexksysx.repo.SpellCasterRepository;
