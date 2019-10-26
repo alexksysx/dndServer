@@ -5,6 +5,8 @@ import me.alexksysx.model.Character;
 import me.alexksysx.repo.CharacterRepository;
 import me.alexksysx.repo.RaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,7 @@ public class CharacterController {
 
     @Transactional
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     public Character create(@RequestBody CharacterDto characterDto) {
         Character character = new Character();
         character.setName(characterDto.getName());
@@ -39,5 +42,10 @@ public class CharacterController {
     @GetMapping(value = "/{id}", produces = "application/json")
     public Character getOneById(@PathVariable Long id) {
         return characterRepository.getOne(id);
+    }
+
+    @DeleteMapping(value = "/{id}", produces = "application/json")
+    public void remove(@PathVariable Long id) {
+        characterRepository.deleteById(id);
     }
 }
