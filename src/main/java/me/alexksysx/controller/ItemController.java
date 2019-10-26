@@ -37,7 +37,7 @@ public class ItemController {
         return weapon;
     }
 
-    @PostMapping(value = "/create/weapon", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/create/armor", consumes = "application/json", produces = "application/json")
     public Armor createArmor(@RequestBody Armor armor) {
         armorRepository.save(armor);
         return armor;
