@@ -45,7 +45,11 @@ public class CharacterController {
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public void remove(@PathVariable Long id) {
-        characterRepository.deleteById(id);
+    public ResponseEntity remove(@PathVariable Long id) {
+        if (characterRepository.existsById(id)) {
+            characterRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }
