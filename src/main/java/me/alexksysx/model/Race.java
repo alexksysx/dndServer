@@ -1,9 +1,9 @@
 package me.alexksysx.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -11,38 +11,45 @@ import java.util.ArrayList;
 
 @Entity
 @Proxy(lazy = false)
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Race {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter
     @Column(name = "race_id")
-
     private Long id;
-    @Getter @Setter private String name;
-    @Getter @Setter private String description;
+    private String name;
+    private String description;
 
-    @Getter @Setter private int normalSpeed;
-    @Getter @Setter private int swimSpeed;
-    @Getter @Setter private int climbSpeed;
-    @Getter @Setter private int flySpeed;
-    @Getter @Setter private int darkVision;
+    private int normalSpeed;
+    private int swimSpeed;
+    private int climbSpeed;
+    private int flySpeed;
+    private int darkVision;
 
-    @Getter @Setter private int baseAC;
+    private int baseAC;
 
-    @Getter @Setter private int strengthBonus;
-    @Getter @Setter private int dexterityBonus;
-    @Getter @Setter private int constitutionBonus;
-    @Getter @Setter private int intelligenceBonus;
-    @Getter @Setter private int wisdomBonus;
-    @Getter @Setter private int charismaBonus;
+    private int strengthBonus;
+    private int dexterityBonus;
+    private int constitutionBonus;
+    private int intelligenceBonus;
+    private int wisdomBonus;
+    private int charismaBonus;
 
-    @Getter @Setter private ArrayList<String> resists;
-    @Getter @Setter private ArrayList<String> languages;
-    @Getter @Setter private ArrayList<String> skills;
-    @Getter @Setter private ArrayList<String> spells;
-    @Getter @Setter private ArrayList<String> features;
-    @Getter @Setter private ArrayList<String> weaponProficiencies;
-    @Getter @Setter private ArrayList<String> armorProficiencies;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
+    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
+    @Column(name = "subraces")
+    private ArrayList<SubRace> subRaces;
+    private ArrayList<String> resists;
+    private ArrayList<String> languages;
+    private ArrayList<String> skills;
+    private ArrayList<String> spells;
+    private ArrayList<String> features;
+    private ArrayList<String> weaponProficiencies;
+    private ArrayList<String> armorProficiencies;
+
+    @Transient
+    private boolean ignoreSubRace = false;
 }

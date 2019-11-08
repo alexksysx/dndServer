@@ -34,7 +34,7 @@ public class GameClassController {
 
     @PostMapping(value = "/create/spellcaster", produces = "application/json", consumes = "application/json")
     public SpellCaster createSpellCaster(@RequestBody SpellCaster spellCaster) {
-        spellCasterRepository.save(spellCaster);
+        commonClassRepository.save(spellCaster);
         return spellCaster;
     }
 }
