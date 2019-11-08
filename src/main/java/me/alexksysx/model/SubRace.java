@@ -13,6 +13,6 @@ import javax.persistence.*;
 public class SubRace {
     @Id @GeneratedValue
     @Column(name = "subrace_id")
-    @ManyToMany(mappedBy = "subraces")
+//    @ManyToMany(mappedBy = "subraces")
     private Long id;
 }
