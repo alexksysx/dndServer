@@ -29,22 +29,10 @@ public class ApplicationConfiguration {
 
     @Bean(destroyMethod = "")
     public DataSource dataSource() throws NamingException {
-//        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
-//        lookup.setResourceRef(true);
-//        DataSource dataSource;
-//        try {
-//            dataSource = lookup.getDataSource("dndServer");
-//        } catch (DataSourceLookupFailureException e) {
-//            System.out.println("Cannot establish database connection");
-//            throw e;
-//        }
-//        return dataSource;
         Context initCtx = new InitialContext();
         Context envCtx = (Context) initCtx.lookup("java:comp/env");
-
-// Look up our data source
         return (DataSource)
-                envCtx.lookup("dndServerTest");
+                envCtx.lookup("dndServer");
     }
 
     @Bean
