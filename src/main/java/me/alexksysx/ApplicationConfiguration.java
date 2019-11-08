@@ -44,7 +44,7 @@ public class ApplicationConfiguration {
 
 // Look up our data source
         return (DataSource)
-                envCtx.lookup("jdbc/dndServer");
+                envCtx.lookup("jdbc/postgres");
     }
 
     @Bean
