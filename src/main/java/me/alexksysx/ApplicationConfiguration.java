@@ -44,7 +44,7 @@ public class ApplicationConfiguration {
 
 // Look up our data source
         return (DataSource)
-                envCtx.lookup("dndServer");
+                envCtx.lookup("dndServerTest");
     }
 
     @Bean
