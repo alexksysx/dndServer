@@ -38,11 +38,11 @@ public class Race {
     private int wisdomBonus;
     private int charismaBonus;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
-    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
-    @Column(name = "subraces")
-    private Set<SubRace> subRaces;
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+//    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
+//    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
+//    @Column(name = "subraces")
+//    private Set<SubRace> subRaces;
     private ArrayList<String> resists;
     private ArrayList<String> languages;
     private ArrayList<String> skills;
