@@ -14,6 +14,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -25,21 +28,27 @@ import javax.sql.DataSource;
 public class ApplicationConfiguration {
 
     @Bean(destroyMethod = "")
-    public DataSource dataSource() {
-        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
-        lookup.setResourceRef(true);
-        DataSource dataSource;
-        try {
-            dataSource = lookup.getDataSource("dndServer");
-        } catch (DataSourceLookupFailureException e) {
-            System.out.println("Cannot establish database connection");
-            throw e;
-        }
-        return dataSource;
+    public DataSource dataSource() throws NamingException {
+//        JndiDataSourceLookup lookup = new JndiDataSourceLookup();
+//        lookup.setResourceRef(true);
+//        DataSource dataSource;
+//        try {
+//            dataSource = lookup.getDataSource("dndServer");
+//        } catch (DataSourceLookupFailureException e) {
+//            System.out.println("Cannot establish database connection");
+//            throw e;
+//        }
+//        return dataSource;
+        Context initCtx = new InitialContext();
+        Context envCtx = (Context) initCtx.lookup("java:comp/env");
+
+// Look up our data source
+        return (DataSource)
+                envCtx.lookup("jdbc/dndServer");
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.POSTGRESQL);
         vendorAdapter.setGenerateDdl(true);
@@ -51,7 +60,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) throws NamingException {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return txManager;
