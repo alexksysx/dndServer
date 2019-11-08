@@ -8,6 +8,7 @@ import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Entity
 @Proxy(lazy = false)
@@ -41,7 +42,7 @@ public class Race {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
     @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
     @Column(name = "subraces")
-    private ArrayList<SubRace> subRaces;
+    private Set<SubRace> subRaces;
     private ArrayList<String> resists;
     private ArrayList<String> languages;
     private ArrayList<String> skills;
