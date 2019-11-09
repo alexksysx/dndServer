@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Race {
+public class Race implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "race_id")
@@ -38,11 +39,10 @@ public class Race {
     private int wisdomBonus;
     private int charismaBonus;
 
-//    @JsonInclude(JsonInclude.Include.NON_NULL)
-//    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
-//    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
-//    @Column(name = "subraces")
-//    private Set<SubRace> subRaces;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = SubRace.class)
+    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
+    private Set<SubRace> subRaces;
     private ArrayList<String> resists;
     private ArrayList<String> languages;
     private ArrayList<String> skills;
@@ -50,7 +50,4 @@ public class Race {
     private ArrayList<String> features;
     private ArrayList<String> weaponProficiencies;
     private ArrayList<String> armorProficiencies;
-
-    @Transient
-    private boolean ignoreSubRace = false;
 }

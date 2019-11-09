@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CharacterDto {
+    private Long id;
     private String name;
     private Long raceId;
 }

@@ -24,17 +24,16 @@ public class CharacterController {
     RaceRepository raceRepository;
 
     @Transactional
-    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Character create(@RequestBody CharacterDto characterDto) {
         Character character = new Character();
         character.setName(characterDto.getName());
         character.setRace(raceRepository.getOne(characterDto.getRaceId()));
-        characterRepository.save(character);
-        return character;
+        return characterRepository.save(character);
     }
 
-    @RequestMapping(produces = "application/json")
+    @GetMapping(produces = "application/json")
     public List<Character> list() {
         return characterRepository.findAll();
     }
