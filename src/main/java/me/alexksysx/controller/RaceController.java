@@ -9,19 +9,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/race")
 public class RaceController {
     @Autowired
-    RaceRepository raceRepository;
+    private RaceRepository raceRepository;
 
     @Autowired
-    SubRaceRepository subRaceRepository;
+    private SubRaceRepository subRaceRepository;
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     public Race createRace(@RequestBody RaceDto raceDto) {
@@ -44,10 +43,10 @@ public class RaceController {
         Race race = new Race();
         BeanUtils.copyProperties(dto, race, "subRaces");
         if(dto.getSubRaces() != null && !dto.getSubRaces().isEmpty() ) {
-            Set<SubRace> subRaceSet = subRaceRepository.findByIdIn(dto.getSubRaces());
-            race.setSubRaces(subRaceSet);
+            List<SubRace> subRaceList = subRaceRepository.findByIdIn(dto.getSubRaces());
+            race.setSubRaces(subRaceList);
         } else {
-            Set<SubRace> subRaceSet = new LinkedHashSet<>();
+            List<SubRace> subRaceSet = new ArrayList<>();
             race.setSubRaces(subRaceSet);
         }
         return race;

@@ -1,5 +1,6 @@
 package me.alexksysx.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,8 @@ import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Proxy(lazy = false)
@@ -40,9 +42,12 @@ public class Race implements Serializable {
     private int charismaBonus;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = SubRace.class)
-    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
-    private Set<SubRace> subRaces;
+    @JsonIgnoreProperties("races")
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
+    @JoinTable(name = "racesubrace",
+            joinColumns = @JoinColumn(name = "subrace_id"),
+            inverseJoinColumns = @JoinColumn(name = "race_id"))
+    private List<SubRace> subRaces;
     private ArrayList<String> resists;
     private ArrayList<String> languages;
     private ArrayList<String> skills;

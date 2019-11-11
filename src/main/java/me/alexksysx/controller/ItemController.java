@@ -1,7 +1,7 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.items.Item;
 import me.alexksysx.model.items.Armor;
+import me.alexksysx.model.items.Item;
 import me.alexksysx.model.items.Weapon;
 import me.alexksysx.repo.ArmorRepository;
 import me.alexksysx.repo.ItemRepository;
@@ -17,13 +17,13 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
     @Autowired
-    WeaponRepository weaponRepository;
+    private WeaponRepository weaponRepository;
 
     @Autowired
-    ArmorRepository armorRepository;
+    private ArmorRepository armorRepository;
 
     @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
     public Item createItem(@RequestBody Item item) {
