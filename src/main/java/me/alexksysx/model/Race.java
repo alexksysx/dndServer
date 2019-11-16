@@ -32,6 +32,8 @@ public class Race implements Serializable {
     private int flySpeed;
     private int darkVision;
 
+//    private Size size;
+
     private int baseAC;
 
     private int strengthBonus;

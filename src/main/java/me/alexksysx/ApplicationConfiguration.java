@@ -3,6 +3,7 @@ package me.alexksysx;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,6 +22,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = "me.alexksysx.repo")
 @EnableTransactionManagement
+@Import(DataInitialization.class)
 @ComponentScan(basePackages = "me.alexksysx")
 public class ApplicationConfiguration {
 

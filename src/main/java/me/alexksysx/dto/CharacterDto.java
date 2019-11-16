@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class CharacterDto {
     private Long id;
     private String name;
-    private Long raceId;
+    private Long race;
+    private Long subRace;
 }
