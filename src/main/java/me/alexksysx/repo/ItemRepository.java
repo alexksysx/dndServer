@@ -1,6 +1,6 @@
 package me.alexksysx.repo;
 
-import me.alexksysx.model.items.Item;
+import me.alexksysx.model.item.Item;
 import me.alexksysx.repo.dao.ItemDao;
 
 import javax.transaction.Transactional;

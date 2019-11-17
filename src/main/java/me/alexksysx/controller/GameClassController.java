@@ -1,7 +1,7 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.gameClasses.CommonClass;
-import me.alexksysx.model.gameClasses.SpellCaster;
+import me.alexksysx.model.gameClass.CommonClass;
+import me.alexksysx.model.gameClass.SpellCaster;
 import me.alexksysx.repo.CommonClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

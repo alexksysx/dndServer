@@ -1,4 +1,4 @@
-package me.alexksysx.model.items;
+package me.alexksysx.model.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

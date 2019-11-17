@@ -1,6 +1,6 @@
 package me.alexksysx.repo.dao;
 
-import me.alexksysx.model.items.Item;
+import me.alexksysx.model.item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 

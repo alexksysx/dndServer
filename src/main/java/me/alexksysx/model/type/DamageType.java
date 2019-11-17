@@ -1,22 +1,23 @@
-package me.alexksysx.model;
+package me.alexksysx.model.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @Data
 @Proxy(lazy = false)
-@NoArgsConstructor
 @AllArgsConstructor
-public class WeaponType {
+@NoArgsConstructor
+public class DamageType {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private Long id;
     private String name;
-    @Column(columnDefinition = "TEXT")
     private String description;
 }

@@ -1,7 +1,9 @@
 package me.alexksysx;
 
 import me.alexksysx.model.Size;
-import me.alexksysx.model.WeaponType;
+import me.alexksysx.model.type.DamageType;
+import me.alexksysx.model.type.WeaponType;
+import me.alexksysx.repo.DamageTypeRepository;
 import me.alexksysx.repo.SizeRepository;
 import me.alexksysx.repo.WeaponTypeRepository;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +55,30 @@ public class DataInitialization {
         for (WeaponType weaponType: weaponTypes) {
             if(!weaponTypeRepository.existsWeaponTypeByName(weaponType.getName())) {
                 weaponTypeRepository.save(weaponType);
+            }
+        }
+        return true;
+    }
+
+    @Bean
+    public boolean initDamageType(DamageTypeRepository damageTypeRepository) {
+        ArrayList<DamageType> damageTypes = new ArrayList<>();
+        damageTypes.add(new DamageType(1L, "Acid", "The corrosive spray of a black dragon’s breath and the dissolving enzymes secreted by a black pudding deal acid damage"));
+        damageTypes.add(new DamageType(2L, "Bludgeoning", "Blunt force attacks—hammers, falling, constriction, and the like — deal bludgeoning damage."));
+        damageTypes.add(new DamageType(3L, "Cold", "The infernal chill radiating from an ice devil’s spear and the frigid blast of a white dragon’s breath deal cold damage."));
+        damageTypes.add(new DamageType(4L, "Fire", "Red dragons breathe fire, and many spells conjure flames to deal fire damage."));
+        damageTypes.add(new DamageType(5L, "Force", "Force is pure magical energy focused into a damaging form. Most effects that deal force damage are spells, including magic missile and spiritual weapon."));
+        damageTypes.add(new DamageType(6L, "Lightning", "A lightning bolt spell and a blue dragon’s breath deal lightning damage."));
+        damageTypes.add(new DamageType(7L, "Necrotic", "Necrotic damage, dealt by certain undead and a spell such as chill touch, withers matter and even the soul."));
+        damageTypes.add(new DamageType(8L, "Piercing", "Puncturing and impaling attacks, including spears and monsters’ bites, deal piercing damage."));
+        damageTypes.add(new DamageType(9L, "Poison", "Venom ous stings and the toxic gas o f a green dragon’s breath deal poison damage."));
+        damageTypes.add(new DamageType(10L, "Psychic", "Mental abilities such as a mind flayer’s psionic blast deal psychic damage."));
+        damageTypes.add(new DamageType(11L, "Radiant", "Radiant damage, dealt by a cleric’s flame strike spell or an angel’s smiting weapon, sears the flesh like fire and overloads the spirit with power."));
+        damageTypes.add(new DamageType(12L, "Slashing", "Swords, axes, and monsters’ claws deal slashing damage."));
+        damageTypes.add(new DamageType(13L, "Thunder", "A concussive burst of sound, such as the effect of the thunderwave spell, deals thunder damage."));
+        for (DamageType damageType: damageTypes) {
+            if(!damageTypeRepository.existsDamageTypeByNameAndDescription(damageType.getName(), damageType.getDescription())) {
+                damageTypeRepository.save(damageType);
             }
         }
         return true;

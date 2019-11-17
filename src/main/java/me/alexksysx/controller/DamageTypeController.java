@@ -1,7 +1,7 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.type.WeaponType;
-import me.alexksysx.repo.WeaponTypeRepository;
+import me.alexksysx.model.type.DamageType;
+import me.alexksysx.repo.DamageTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +12,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/weapon-type")
-public class WeaponTypeController {
-
+@RequestMapping("/damage-type")
+public class DamageTypeController {
     @Autowired
-    WeaponTypeRepository weaponTypeRepository;
+    DamageTypeRepository damageTypeRepository;
 
     @GetMapping(produces = "application/json")
-    public List<WeaponType> list() {
-        return weaponTypeRepository.findAll();
+    public List<DamageType> list() {
+        return damageTypeRepository.findAll();
     }
 }

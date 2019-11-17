@@ -1,8 +1,8 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.items.Armor;
-import me.alexksysx.model.items.Item;
-import me.alexksysx.model.items.Weapon;
+import me.alexksysx.model.item.Armor;
+import me.alexksysx.model.item.Item;
+import me.alexksysx.model.item.Weapon;
 import me.alexksysx.repo.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
