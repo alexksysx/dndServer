@@ -90,6 +90,12 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -117,4 +123,19 @@
         <finalName>${project.name}</finalName>
     </build>
 
+
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>spring.profiles.active</name>-->
+<!--                    <value>dev</value>-->
+<!--                </property>-->
+<!--            </activation>-->
+        </profile>
+    </profiles>
 </project>

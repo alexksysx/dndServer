@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import java.io.Serializable;
 
 @Entity
 @Proxy(lazy = false)
@@ -16,7 +17,7 @@ import javax.persistence.Inheritance;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class Item implements Serializable {
     @Id
     @GeneratedValue
     private Long id;

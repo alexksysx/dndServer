@@ -1,9 +1,8 @@
-package me.alexksysx;
+package me.alexksysx.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -13,8 +12,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -23,17 +20,39 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = "me.alexksysx.repo")
 @EnableTransactionManagement
-@Import(DataInitialization.class)
 @ComponentScan(basePackages = "me.alexksysx")
-public class ApplicationConfiguration {
+public class ApplicationConfiguration  {
 
+
+    @Autowired
+    private BeanFactory beanFactory;
+
+    @Profile("dev")
     @Bean(destroyMethod = "")
-    public DataSource dataSource() throws NamingException {
-        Context initCtx = new InitialContext();
-        Context envCtx = (Context) initCtx.lookup("java:comp/env");
-        return (DataSource)
-                envCtx.lookup("dndServer");
+    public DataSource devDataSource() throws NamingException {
+        System.out.println("dev datasource is active");
+
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setUrl("jdbc:postgresql:/private.alexksysx.me:5432/dndServer");
+        ds.setUsername("dndtest");
+        ds.setPassword("dndtest");
+        ds.setDriverClassName("org.postgresql.Driver");
+        return ds;
     }
+
+
+//    @Profile("!dev")
+//    @Bean(destroyMethod = "")
+//    public DataSource dataSource() throws NamingException {
+//        System.out.println("prod datasource is active");
+//
+//
+//        Context initCtx = new InitialContext();
+//        Context envCtx = (Context) initCtx.lookup("java:comp/env");
+//        return (DataSource)
+//                envCtx.lookup("dndServer");
+//
+//    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
@@ -43,7 +62,8 @@ public class ApplicationConfiguration {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan(getClass().getPackage().getName());
-        factory.setDataSource(dataSource());
+        factory.setDataSource(devDataSource());
+
         return factory;
     }
 
@@ -53,4 +73,6 @@ public class ApplicationConfiguration {
         txManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return txManager;
     }
+
+
 }
