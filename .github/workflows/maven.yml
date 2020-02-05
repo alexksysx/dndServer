@@ -31,4 +31,4 @@ jobs:
           USER: ${{ secrets.USER }}
         with:
            source: target/dndServerTest.jar
-           target: /home/alexksysx/dndServerTest.jar
+           target: /home/alexksysx/
