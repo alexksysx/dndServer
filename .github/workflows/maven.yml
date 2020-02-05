@@ -24,11 +24,10 @@ jobs:
           name: dndServerTest.jar
           path: target/
       - name: Copy file to server with scp
-        uses: appleboy/scp-action@v0.0.1
-        env:
-          HOST: ${{ secrets.HOST }}
-          KEY: ${{ secrets.KEY }}
-          USER: ${{ secrets.USER }}
+        uses: garygrossgarten/github-action-scp@release         
         with:
-           source: "target/dndServerTest.jar"
-           target: "/home/alexksysx/"
+          host: ${{ secrets.HOST }}
+          privateKey: ${{ secrets.KEY }}
+          username: ${{ secrets.USER }}
+          local: target/dndServerTest.jar
+          remote : /home/alexksysx/
