@@ -1,4 +1,4 @@
-name: Java CI
+name: dndServer build
 
 on:
   push:
@@ -23,11 +23,3 @@ jobs:
         with:
           name: dndServerTest.jar
           path: target/
-      - name: Copy file to server with scp
-        uses: garygrossgarten/github-action-scp@release         
-        with:
-          host: alexksysx.me
-          privateKey: ${{ secrets.KEY }}
-          username: ${{ secrets.USER }}
-          local: target/dndServerTest.jar
-          remote : /home/alexksysx/
