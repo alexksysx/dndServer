@@ -1,21 +1,23 @@
 package me.alexksysx.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Proxy(lazy = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Race {
+public class Race implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "race_id")
@@ -29,20 +31,23 @@ public class Race {
     private int flySpeed;
     private int darkVision;
 
+//    private Size size;
+
     private int baseAC;
 
-    private int strengthBonus;
-    private int dexterityBonus;
-    private int constitutionBonus;
-    private int intelligenceBonus;
-    private int wisdomBonus;
-    private int charismaBonus;
+    private Integer strengthBonus;
+    private Integer dexterityBonus;
+    private Integer constitutionBonus;
+    private Integer intelligenceBonus;
+    private Integer wisdomBonus;
+    private Integer charismaBonus;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties("races")
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = SubRace.class)
-    @JoinColumn(name = "subrace_id", nullable = false, updatable = false)
-    @Column(name = "subraces")
-    private Set<SubRace> subRaces;
+    @JoinTable(name = "racesubrace",
+            joinColumns = @JoinColumn(name = "subrace_id"),
+            inverseJoinColumns = @JoinColumn(name = "race_id"))
+    private List<SubRace> subRaces;
     private ArrayList<String> resists;
     private ArrayList<String> languages;
     private ArrayList<String> skills;
@@ -51,6 +56,7 @@ public class Race {
     private ArrayList<String> weaponProficiencies;
     private ArrayList<String> armorProficiencies;
 
-    @Transient
-    private boolean ignoreSubRace = false;
+    public void addSubRace(SubRace subRace) {
+        subRaces.add(subRace);
+    }
 }

@@ -18,6 +18,6 @@ import javax.persistence.Id;
 public class Skill {
     @Id @GeneratedValue
     private Long id;
-    String name;
-    String source;
+    private String name;
+    private String source;
 }

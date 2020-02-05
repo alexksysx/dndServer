@@ -1,4 +1,4 @@
-package me.alexksysx.model;
+package me.alexksysx.model.gameClass.features;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,15 +11,14 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@Proxy(lazy = false)
 @AllArgsConstructor
 @NoArgsConstructor
-@Proxy(lazy = false)
-public class Ability {
+public class PassiveFeature {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
+    private int requiredLevel;
     private String description;
-    private String restoration;
-    private int counter;
 }

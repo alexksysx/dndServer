@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="dndServer" class="org.eclipse.jetty.plus.jndi.Resource">
+        <!-- Задаем JNDI имя для Datasource -->
+        <Arg>dndServer</Arg>
+        <Arg>
+            <!-- Задаем Datasource c указанной URL, которая конфигурирует in-memory режим и совместимость с Oracle -->
+            <New class="org.postgresql.ds.PGSimpleDataSource">
+                <Set name="serverName">server.con</Set>
+                <Set name="databaseName">name</Set>
+                <Set name="user">user</Set>
+                <Set name="password">password</Set>
+                <Set name="portNumber">5432</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>

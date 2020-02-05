@@ -25,7 +25,6 @@ public class SkillController {
 
     @RequestMapping
     public List<Skill> list() {
-        List<Skill> list = skillRepository.findAll();
-        return list;
+        return skillRepository.findAll();
     }
 }

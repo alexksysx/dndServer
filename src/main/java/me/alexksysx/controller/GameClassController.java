@@ -1,9 +1,8 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.gameClasses.CommonClass;
-import me.alexksysx.model.gameClasses.SpellCaster;
+import me.alexksysx.model.gameClass.CommonClass;
+import me.alexksysx.model.gameClass.SpellCaster;
 import me.alexksysx.repo.CommonClassRepository;
-import me.alexksysx.repo.SpellCasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,6 @@ public class GameClassController {
 
     @Autowired
     CommonClassRepository commonClassRepository;
-
-    @Autowired
-    SpellCasterRepository spellCasterRepository;
 
     @GetMapping(produces = "application/json")
     public List<CommonClass> getAll() {

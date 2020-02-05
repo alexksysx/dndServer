@@ -10,13 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Proxy(lazy = false)
 @Data
+@Proxy(lazy = false)
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubClass {
-    @Id @GeneratedValue
-    private long id;
-    private long mainClassId;
-
+public class Size {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private String space;
 }

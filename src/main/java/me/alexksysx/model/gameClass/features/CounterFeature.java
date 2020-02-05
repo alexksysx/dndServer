@@ -1,4 +1,4 @@
-package me.alexksysx.model.items;
+package me.alexksysx.model.gameClass.features;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,22 +8,18 @@ import org.hibernate.annotations.Proxy;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 
 @Entity
-@Proxy(lazy = false)
-@Inheritance
 @Data
+@Proxy(lazy = false)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class CounterFeature {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String source;
+    private int requiredLevel;
+    private int[] amount;
     private String description;
-    private Double weight;
-    private String type;
-    private String cost;
 }

@@ -1,6 +1,6 @@
 package me.alexksysx.repo.dao;
 
-import me.alexksysx.model.gameClasses.CommonClass;
+import me.alexksysx.model.gameClass.CommonClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
