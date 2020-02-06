@@ -1,4 +1,4 @@
-  name: dndServer build
+name: dndServer build
 
 on:
   push:
@@ -52,4 +52,3 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dndServerTest.jar
-          path: target/
