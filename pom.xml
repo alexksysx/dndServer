@@ -160,7 +160,7 @@
         <profile>
             <id>postgres</id>
             <properties>
-                <profile.database>postgres</profile.database>
+                <spring.profiles.active>postgres</spring.profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -172,36 +172,11 @@
                     <version>42.2.8</version>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.eclipse.jetty</groupId>
-                        <artifactId>jetty-maven-plugin</artifactId>
-                        <version>9.4.19.v20190610</version>
-                        <configuration>
-                            <contextXml>src/main/resources/webAppContext.xml</contextXml>
-                            <jettyXml>src/main/resources/server.xml</jettyXml>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.eclipse.jetty</groupId>
-                                <artifactId>jetty-plus</artifactId>
-                                <version>9.4.19.v20190610</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.postgresql</groupId>
-                                <artifactId>postgresql</artifactId>
-                                <version>42.2.8</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>h2</id>
             <properties>
-                <profile.database>h2</profile.database>
+                <spring.profiles.active>h2</spring.profiles.active>
             </properties>
             <dependencies>
                 <dependency>
@@ -211,22 +186,6 @@
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.eclipse.jetty</groupId>
-                        <artifactId>jetty-maven-plugin</artifactId>
-                        <version>9.4.19.v20190610</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.eclipse.jetty</groupId>
-                                <artifactId>jetty-plus</artifactId>
-                                <version>9.4.19.v20190610</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
