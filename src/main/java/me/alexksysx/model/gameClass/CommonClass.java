@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Proxy(lazy = false)
 @Table(name = "commonclass")
-@Inheritance
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
