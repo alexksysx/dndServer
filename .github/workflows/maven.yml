@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - Boot
+      - metrics
 
 jobs:
   build:
@@ -46,6 +47,12 @@ jobs:
           path: './src/main/resources/application-postgres.properties'
           property: 'spring.jpa.properties.hibernate.dialect'
           value: ${{ secrets.DB_DIALECT }}
+      - name: Add influxdb url
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/applications.properties'
+          property: 'management.metrics.export.influx.uri'
+          value: ${{ secrets.INFLUX_URL }}
       - name: Build with Maven
         run: mvn -B package --file pom.xml -P postgres
       - name: Upload
