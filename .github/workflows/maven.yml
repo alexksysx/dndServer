@@ -62,3 +62,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: "target/dndServerTest.jar"
           target: "/home/github"
+      - name: Webhook to server
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
