@@ -9,9 +9,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +36,14 @@ public class CharacterController {
     @Transactional
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('USER')")
     public Character create(@RequestBody CharacterDto characterDto) {
         Character character = characterFromDto(characterDto);
         return characterRepository.save(character);
     }
 
     @GetMapping(produces = "application/json")
-    public List<Character> list() {
+    public List<Character> list(Principal principal) {
         return characterRepository.findAll();
     }
 

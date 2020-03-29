@@ -8,6 +8,8 @@ import me.alexksysx.model.gameClass.CommonClass;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Data
@@ -23,5 +25,4 @@ public class CharacterClass {
     @ManyToOne(targetEntity = CommonClass.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "gameclass_id", nullable = false, updatable = false)
     private CommonClass gameClass;
-
 }

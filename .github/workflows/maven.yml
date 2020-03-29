@@ -1,34 +1,61 @@
-name: Java CI
+name: dndServer build
 
 on:
   push:
-    branches: 
+    branches:
       - Boot
-
+      - metrics
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Upload
-      uses: actions/upload-artifact@v1
-      with:
-        name: dndServerTest.jar
-        path: target/
-    - name: Copy file to server with scp
-      uses: appleboy/scp-action@v0.0.1
-      env: 
-        HOST: ${{ secrets.HOST }}
-        KEY: ${{ secrets.KEY }}
-        USER: ${{ secrets.USER }}
-      with: 
-        source: target/dndServerTest.jar
-        target: /home/alexksysx/dndServerTest.jar
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Add database URL
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/application-postgres.properties'
+          property: 'spring.datasource.url'
+          value: ${{ secrets.DB_URL }}
+      - name: Add database Driver
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/application-postgres.properties'
+          property: 'spring.datasource.driver-class-name'
+          value: ${{ secrets.DB_DRIVER }}
+      - name: Add database USERNAME
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/application-postgres.properties'
+          property: 'spring.datasource.username'
+          value: ${{ secrets.DB_USERNAME }}
+      - name: Add database PASSWORD
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/application-postgres.properties'
+          property: 'spring.datasource.password'
+          value: ${{ secrets.DB_PASSWORD }}
+      - name: Add database DIALECT
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/application-postgres.properties'
+          property: 'spring.jpa.properties.hibernate.dialect'
+          value: ${{ secrets.DB_DIALECT }}
+      - name: Add influxdb url
+        uses: christian-draeger/write-properties@1.0.0
+        with:
+          path: './src/main/resources/applications.properties'
+          property: 'management.metrics.export.influx.uri'
+          value: ${{ secrets.INFLUX_URL }}
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -P postgres
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          path: target/
+          name: dndServerTest.jar
