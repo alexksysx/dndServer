@@ -20,7 +20,6 @@ public class RaceService {
     @Autowired
     SubRaceRepository subRaceRepository;
 
-
     public Race createRace(RaceDto raceDto) {
         Race race = raceFromDto(raceDto);
         return raceRepository.save(race);
@@ -42,7 +41,7 @@ public class RaceService {
     private Race raceFromDto(RaceDto dto) {
         Race race = new Race();
         BeanUtils.copyProperties(dto, race, "subRaces");
-        if(dto.getSubRaces() != null && !dto.getSubRaces().isEmpty() ) {
+        if (dto.getSubRaces() != null && !dto.getSubRaces().isEmpty()) {
             List<SubRace> subRaceList = subRaceRepository.findByIdIn(dto.getSubRaces());
             race.setSubRaces(subRaceList);
         } else {

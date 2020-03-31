@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Proxy(lazy = false)
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +21,7 @@ public class Item implements Serializable {
     private Long id;
     private String name;
     private String source;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double weight;
     private String type;

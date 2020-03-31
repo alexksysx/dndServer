@@ -9,11 +9,11 @@ import javax.persistence.*;
 
 @Entity
 @Proxy(lazy = false)
-@Table(name = "commonclass")
+@Table(name = "gameclass")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommonClass {
+public class GameClass {
     @Id
     @GeneratedValue
     @Column(name = "gameclass_id")

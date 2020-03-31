@@ -11,7 +11,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Data
-@PrimaryKeyJoinColumn(name = "armor_id")
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor

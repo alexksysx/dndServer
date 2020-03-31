@@ -1,10 +1,9 @@
-package me.alexksysx.model.gameClass.features;
+package me.alexksysx.model.features;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import me.alexksysx.model.gameClass.ClassFeature;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Entity;
@@ -15,6 +14,6 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdjustmentFeature extends ClassFeature {
-    private String formula;
+public class SpellCasterFeature extends Feature {
+    private Integer[][] cells;
 }
