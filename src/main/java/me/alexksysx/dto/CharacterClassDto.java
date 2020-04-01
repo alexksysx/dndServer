@@ -14,4 +14,5 @@ public class CharacterClassDto {
     private boolean isFirst;
     private Long gameClass;
     private List<FeatureChoiceDto> featureChoices;
+    private List<CounterFeatureValueDto> counterFeatureValues;
 }

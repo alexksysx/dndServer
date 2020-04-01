@@ -2,11 +2,18 @@ package me.alexksysx.service;
 
 import me.alexksysx.dto.CharacterClassDto;
 import me.alexksysx.dto.CharacterDto;
+import me.alexksysx.dto.CounterFeatureValueDto;
 import me.alexksysx.dto.FeatureChoiceDto;
 import me.alexksysx.model.Character;
 import me.alexksysx.model.bindModel.CharacterClass;
+import me.alexksysx.model.bindModel.CounterFeatureValue;
 import me.alexksysx.model.bindModel.FeatureChoice;
+import me.alexksysx.model.features.CounterFeature;
 import me.alexksysx.repo.*;
+import me.alexksysx.repo.bindRepos.CharacterClassRepository;
+import me.alexksysx.repo.bindRepos.CounterFeatureValueRepository;
+import me.alexksysx.repo.bindRepos.FeatureChoiceRepository;
+import me.alexksysx.repo.feature.CounterFeatureRepository;
 import me.alexksysx.repo.feature.FeatureRepository;
 import me.alexksysx.repo.feature.OptionsFeatureRepository;
 import org.springframework.beans.BeanUtils;
@@ -34,6 +41,10 @@ public class CharacterService {
     FeatureRepository featureRepository;
     @Autowired
     FeatureChoiceRepository featureChoiceRepository;
+    @Autowired
+    CounterFeatureRepository counterFeatureRepository;
+    @Autowired
+    CounterFeatureValueRepository counterFeatureValueRepository;
 
     private Character getCharacterFromDto(CharacterDto characterDto) {
         Character character = new Character();
@@ -44,13 +55,6 @@ public class CharacterService {
 
         if (characterDto.getClasses() != null && !characterDto.getClasses().isEmpty()) {
             for (CharacterClassDto charClassDto : characterDto.getClasses()) {
-//                CharacterClass characterClass = new CharacterClass();
-//                BeanUtils.copyProperties(charClassDto, characterClass, "classes");
-//                if (charClassDto.getGameClass() != null) {
-//                    characterClass.setGameClass(gameClassRepository.getOne(charClassDto.getGameClass()));
-//                }
-//                characterClass = characterClassRepository.save(characterClass);
-//                classes.add(characterClass);
                 classes.add(getCharacterClassFromDto(charClassDto));
             }
         }
@@ -62,17 +66,24 @@ public class CharacterService {
         CharacterClass characterClass = new CharacterClass();
         BeanUtils.copyProperties(charClassDto, characterClass, "classes");
         List<FeatureChoice> featureChoiceList = new ArrayList<>();
+        List<CounterFeatureValue> counterFeatureValueList = new ArrayList<>();
         if (charClassDto.getGameClass() != null) {
             characterClass.setGameClass(gameClassRepository.getOne(charClassDto.getGameClass()));
             for(FeatureChoiceDto featureChoiceDto: charClassDto.getFeatureChoices()) {
                 FeatureChoice featureChoice = new FeatureChoice();
                 featureChoice.setOptionFeature(optionsFeatureRepository.getOne(featureChoiceDto.getOptionFeature()));
                 featureChoice.setPickedFeature(featureRepository.getOne(featureChoiceDto.getPickedFeature()));
-                featureChoiceList.add(featureChoiceRepository.save(featureChoice));
+                featureChoiceList.add(featureChoice);
+            }
+            for (CounterFeatureValueDto counterFeatureValueDto: charClassDto.getCounterFeatureValues()) {
+                CounterFeatureValue counterFeatureValue = new CounterFeatureValue();
+                counterFeatureValue.setCounterFeature(counterFeatureRepository.getOne(counterFeatureValueDto.getCounterFeature()));
+                counterFeatureValue.setValue(counterFeatureValueDto.getValue());
+                counterFeatureValueList.add(counterFeatureValue);
             }
         }
         characterClass.setFeatureChoices(featureChoiceList);
-        characterClass = characterClassRepository.save(characterClass);
+        characterClass.setCounterFeatureValues(counterFeatureValueList);
         return characterClass;
     }
 

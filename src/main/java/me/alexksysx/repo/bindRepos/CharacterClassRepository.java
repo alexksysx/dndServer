@@ -1,4 +1,4 @@
-package me.alexksysx.repo;
+package me.alexksysx.repo.bindRepos;
 
 import me.alexksysx.model.bindModel.CharacterClass;
 import org.springframework.data.jpa.repository.JpaRepository;
