@@ -1,15 +1,12 @@
-package me.alexksysx.model.gameClass.features;
+package me.alexksysx.model.features;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import me.alexksysx.model.gameClass.ClassFeature;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 @Data
@@ -17,6 +14,6 @@ import javax.persistence.Id;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CounterFeature extends ClassFeature {
-    private int[] amount;
+public class AdjustmentFeature extends Feature {
+    private String formula;
 }

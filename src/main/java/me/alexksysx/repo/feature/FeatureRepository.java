@@ -1,10 +1,10 @@
 package me.alexksysx.repo.feature;
 
-import me.alexksysx.model.gameClass.ClassFeature;
+import me.alexksysx.model.features.Feature;
 import me.alexksysx.repo.dao.FeatureDao;
 
 import javax.transaction.Transactional;
 
 @Transactional
-public interface ClassFeatureRepository extends FeatureDao<ClassFeature> {
+public interface FeatureRepository extends FeatureDao<Feature> {
 }

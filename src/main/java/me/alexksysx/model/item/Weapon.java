@@ -16,7 +16,6 @@ import java.util.List;
 
 @Entity
 @Data
-@PrimaryKeyJoinColumn(name = "weapon_id")
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor

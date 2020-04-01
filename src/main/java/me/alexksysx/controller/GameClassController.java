@@ -1,7 +1,7 @@
 package me.alexksysx.controller;
 
-import me.alexksysx.model.gameClass.CommonClass;
-import me.alexksysx.repo.CommonClassRepository;
+import me.alexksysx.model.gameClass.GameClass;
+import me.alexksysx.repo.GameClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,16 +14,16 @@ import java.util.List;
 public class GameClassController {
 
     @Autowired
-    CommonClassRepository commonClassRepository;
+    GameClassRepository gameClassRepository;
 
     @GetMapping(produces = "application/json")
-    public List<CommonClass> getAll() {
-        return new ArrayList<>(commonClassRepository.findAll());
+    public List<GameClass> getAll() {
+        return new ArrayList<>(gameClassRepository.findAll());
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public CommonClass create(@RequestBody CommonClass commonClass) {
-        commonClassRepository.save(commonClass);
-        return commonClass;
+    public GameClass create(@RequestBody GameClass gameClass) {
+        gameClassRepository.save(gameClass);
+        return gameClass;
     }
 }

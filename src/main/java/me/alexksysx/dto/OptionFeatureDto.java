@@ -9,11 +9,9 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CharacterDto {
-    private Long id;
+public class OptionFeatureDto {
     private String name;
-    private Long race;
-    private Long subRace;
-    private Integer level;
-    private ArrayList<CharacterClassDto> classes;
+    private Integer requiredLevel;
+    private String description;
+    private ArrayList<Long> options;
 }
